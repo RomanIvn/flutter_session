@@ -18,7 +18,7 @@ class FlutterSession {
   Map _session = {};
 
   // Yes, it uses SharedPreferences
-  SharedPreferences prefs;
+  late SharedPreferences prefs;
 
   // Initialize the SharedPreferences instance
   Future _initSharedPrefs() async {
@@ -32,7 +32,7 @@ class FlutterSession {
   Future get(key) async {
     await _initSharedPrefs();
     try {
-      return json.decode(this.prefs.get(key));
+      return json.decode(this.prefs.get(key)!.toString());
     } catch (e) {
       return this.prefs.get(key);
     }
